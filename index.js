@@ -21,9 +21,26 @@ app.listen(PORT || 1234, () =>
 import cors from "cors";
 import logger from "morgan";
 //create cors options;
+
+const allowedOrigins = [
+  "http://localhost:5173", // Vite dev server
+  process.env.ORIGIN // deployed frontend on Vercel
+];
+
 const corsOptions = {
-  origin: process.env.ORIGIN || "http://localhost:1234",
-};
+  origin: function(origin, callback) {
+    // allow requests with no origin (Postman/curl)
+    if (!origin) return callback(null, true);
+
+    if (!allowedOrigins.includes(origin)) {
+      console.log("Blocked CORS request from origin:", origin);
+      return callback(new Error(`CORS policy does not allow access from ${origin}`), false);
+    }
+
+    return callback(null, true);
+  },
+  credentials: true // if using cookies/auth headers
+}
 
 //app level middleware
 app.use(cors(corsOptions));
