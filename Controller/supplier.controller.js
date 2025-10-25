@@ -85,6 +85,7 @@ export const addTransactionToSupplier = async (req, res) => {
   try {
     const { id } = req.params;
     const transaction = req.body;
+console.log("transaction",transaction)
 
     // Find supplier by ID
     const supplier = await supplierSchema.findById(id);

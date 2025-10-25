@@ -41,7 +41,7 @@ const supplierSchema = new Schema({
     {
       credit:{type:Number,default:0},
       debit:{type:Number,default:0},
-      description:{type:Number,default:0},
+      description:{type:String},
       date: { type: Date, default: Date.now }
     }
   ]

@@ -5,7 +5,7 @@ dotenv.config();
 //mongoDB connection
 import mongoose from "mongoose";
 mongoose
-  .connect(process.env.DB_URl)
+  .connect(process.env.DB_URL)
   .then(() => console.log("mongoDB connected"))
   .catch((err) => console.log("dbconnection error", err));
 //create listening port
