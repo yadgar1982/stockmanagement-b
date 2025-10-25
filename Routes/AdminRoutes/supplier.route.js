@@ -6,7 +6,8 @@ import {
   deleteSupplier,
   getAllSupplier,
   updateSupplier,
-  getById
+  getById,
+  addTransactionToSupplier
 } from "../../Controller/supplier.controller.js";
 import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
 //supplier registration route
@@ -18,6 +19,11 @@ supplierRouter.post("/create",verifyToken,isAdmin, createSupplier);
 //Private
 //POST /api/supplier/update/:id
 supplierRouter.put("/update/:id", verifyToken, updateSupplier);
+
+//supplier Update route
+//Private
+//POST /api/supplier/update/:id
+supplierRouter.put("/transaction/:id", addTransactionToSupplier);
 
 //supplier Delete route
 //Private

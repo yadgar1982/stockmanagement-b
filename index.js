@@ -22,7 +22,7 @@ import cors from "cors";
 import logger from "morgan";
 //create cors options;
 const corsOptions = {
-  origin: process.env.ORIGIN || "http://localhost:5173",
+  origin: process.env.ORIGIN || "https://stockmanagement-f.vercel.app",
 };
 
 //app level middleware

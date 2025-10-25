@@ -37,6 +37,14 @@ const supplierSchema = new Schema({
   avatar: {
     type: String,
   },
+  transaction:[
+    {
+      credit:{type:Number,default:0},
+      debit:{type:Number,default:0},
+      description:{type:Number,default:0},
+      date: { type: Date, default: Date.now }
+    }
+  ]
 },{timestamps:true});
 
 export default model("supplier", supplierSchema);

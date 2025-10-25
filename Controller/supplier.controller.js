@@ -28,6 +28,7 @@ export const createSupplier = async (req, res) => {
       ...data,
       password: hashedPassword,
       avatar,
+      transactions: [],
     }).save();
 
    res.status(200).json({
@@ -76,6 +77,40 @@ export const updateSupplier=async(req,res)=>{
     res.status(500).json({msg:"Failed to update supplier",err})
   }
 }
+
+//update supplier
+
+
+export const addTransactionToSupplier = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const transaction = req.body;
+
+    // Find supplier by ID
+    const supplier = await supplierSchema.findById(id);
+    if (!supplier) return res.status(404).json({ msg: "Supplier not found" });
+
+
+    if (!supplier.transaction) supplier.transaction = [];
+
+    supplier.transaction.push(transaction);
+
+    // Save the updated supplier
+    await supplier.save();
+
+    res.status(200).json({
+      msg: "Transaction added successfully",
+      data: supplier,
+    });
+  } catch (err) {
+    console.error("Backend error adding transaction:", err);
+    res.status(500).json({
+      msg: "Failed to add transaction",
+      error: err.message, // send readable error
+    });
+  }
+};
+
 
 //get user by email
 
