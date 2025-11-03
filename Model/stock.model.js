@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+import mongoose from "mongoose";
 const stockModel = new Schema({
   stockName: {
     type: String,
@@ -16,6 +16,7 @@ const stockModel = new Schema({
     type: String,
     required: true,
   },
+ 
    stockManager: {
     type: String,
   }

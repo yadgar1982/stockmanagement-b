@@ -1,12 +1,9 @@
 import PurchaseModel from "../Model/purchase.model.js";
-import UserModel from "../Model/user.model.js";
 //create purchase
 export const createPurchase = async (req, res) => {
   try {
 
     const data = req.body;
-    console.log(data);
-   
     const purchase = await new PurchaseModel(data).save();
     return res.status(200).json({
       message: "data submitted succesfully",
@@ -27,10 +24,19 @@ export const getAllPurchase = async (req, res) => {
     return res.status(500).json({ msg: "Internal Server Error" + err.message });
   }
 };
+export const getPurchaseById = async (req, res) => {
+  try {
+     const id = req.params.id;
+    const purchases = await PurchaseModel.findById(id);
+    return res.status(200).json({ data: purchases });
+  } catch (err) {
+    return res.status(500).json({ msg: "Internal Server Error" + err.message });
+  }
+};
 
 //delete purchase
 export const deletePurchase = async (req, res) => {
-  try {
+   try {
     const { id } = req.params;
     await PurchaseModel.findByIdAndDelete(id);
     return res
@@ -45,8 +51,8 @@ export const deletePurchase = async (req, res) => {
 export const updatePurchase = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("id from param", id);
     const data = req.body;
+    console.log("data",data)
     const purchase = await PurchaseModel.findByIdAndUpdate(id, data, {
       new: true,
     });

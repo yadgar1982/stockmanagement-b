@@ -6,11 +6,12 @@ import {
   deleteDealer,
   getAllDealer,
   updateDealer,
-  getById
+  getById,
+
 } from "../../Controller/dealer.controller.js";
 import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
 
-//Daler registration route
+//Dealer registration route
 //Private
 //POST /api/dealer/create
 dealerRouter.post("/create",verifyToken,isAdmin, createDealer);

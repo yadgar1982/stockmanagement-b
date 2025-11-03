@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import supplierSchema from "../Model/supplier.model.js"
 import gravatar from "gravatar"
-
+import mongoose from "mongoose";
+import { ObjectId } from "mongodb";
 //create user
 export const createSupplier = async (req, res) => {
   try {
@@ -57,7 +58,50 @@ export const deleteSupplier = async (req, res) => {
   }
 };
 
+// export const deleteSupplierTransaction = async (req, res) => {
+//   try {
+//     const { purchaseId } = req.params;
+
+//   const supplier = await supplierSchema.findOne({
+//   "transaction.purchaseId": purchaseId
+// });
+
+
+
+//     if (!supplier) {
+//       console.log("No supplier found with this transaction");
+//       return res.status(404).json({ msg: "Supplier with this transaction not found" });
+//     }
+
+
+// const objectId = new mongoose.Types.ObjectId(purchaseId);
+//     // Find the index of the transaction
+//     const transactionIndex = supplier.transaction.findIndex(
+//   (t) => t.purchaseId.equals(objectId)
+// );
+
+  
+//     if (transactionIndex === -1) {
+//       console.log("Transaction not found in supplier transactions array");
+//       return res.status(404).json({ msg: "Transaction not found" });
+//     }
+
+//     // Remove the transaction
+//     supplier.transaction.splice(transactionIndex, 1);
+
+//     // Save the updated supplier document
+//     await supplier.save();
+
+//     console.log("Transaction deleted successfully");
+//     return res.status(200).json({ msg: "Transaction deleted successfully" });
+//   } catch (err) {
+//     console.error("Failed to delete transaction:", err);
+//     return res.status(500).json({ msg: "Failed to delete transaction", err: err.message });
+//   }
+// };
+
 //update supplier
+
 export const updateSupplier=async(req,res)=>{
   try{
     const data=req.body;
@@ -81,37 +125,51 @@ export const updateSupplier=async(req,res)=>{
 //update supplier
 
 
-export const addTransactionToSupplier = async (req, res) => {
-  try {
-    const { id } = req.params;
-    const transaction = req.body;
-console.log("transaction",transaction)
+// export const addTransactionToSupplier = async (req, res) => {
+//   try {
+//     const { id } = req.params;
+//     const transaction = req.body;
+//     console.log("transaction",transaction)
+//     // Find supplier by ID
+//     const supplier = await supplierSchema.findById(id);
+//     if (!supplier) return res.status(404).json({ msg: "Supplier not found" });
 
-    // Find supplier by ID
-    const supplier = await supplierSchema.findById(id);
-    if (!supplier) return res.status(404).json({ msg: "Supplier not found" });
 
+//     if (!supplier.transaction) supplier.transaction = [];
 
-    if (!supplier.transaction) supplier.transaction = [];
+//     supplier.transaction.push(transaction);
 
-    supplier.transaction.push(transaction);
+//     // Save the updated supplier
+//     await supplier.save();
 
-    // Save the updated supplier
-    await supplier.save();
+//     res.status(200).json({
+//       msg: "Transaction added successfully",
+//       data: supplier,
+//     });
+//   } catch (err) {
+//     console.error("Backend error adding transaction:", err);
+//     res.status(500).json({
+//       msg: "Failed to add transaction",
+//       error: err.message, // send readable error
+//     });
+//   }
+// };
 
-    res.status(200).json({
-      msg: "Transaction added successfully",
-      data: supplier,
-    });
-  } catch (err) {
-    console.error("Backend error adding transaction:", err);
-    res.status(500).json({
-      msg: "Failed to add transaction",
-      error: err.message, // send readable error
-    });
-  }
-};
-
+// export const updateTransactiontoSupplier=async(req,res)=>{
+//   try{
+//     const {supplierId,purchaseId}=req.params;
+//     const updateData=req.body;
+//     const supplier=await supplierSchema.findById(supplierId);
+//        if(!supplier)return res.status(404).json({msg:"Supplier not found"});
+//     const transaction=supplier.transaction.find((tran)=>tran._id.toString()===purchaseId);
+//     if(!transaction)return res.status(404).json({msg:"Transaction not found"});
+//     Object.assign(transaction,updateData);
+//     await supplier.save();
+//     res.status(200).json({msg:"Transaction updated successfully",data:transaction});
+//   }catch(err){
+//     res.status(500).json({msg:"Failed to update Tranasaction",err})
+//   }
+// };
 
 //get user by email
 

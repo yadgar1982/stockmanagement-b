@@ -1,4 +1,4 @@
-import mongoose, { Mongoose } from "mongoose";
+import mongoose from "mongoose";
 import { Schema, model } from "mongoose";
 const saleSchema = new Schema(
   {
@@ -79,9 +79,13 @@ const saleSchema = new Schema(
     description: {
       type: String,
     },
+     totalCost:{
+      type:Number,
+    },
      isPassed: {
       type: Boolean,
     },
+    
   },
   { timestamps: true }
 );

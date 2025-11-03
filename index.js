@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: false }));
 //import common routes files
 import purchaseRouter from "./Routes/User/purchase.routes.js";
 import salesRouter from "./Routes/User/sales.route.js";
+import paymentRouter from "./Routes/User/payments.route.js";
 import loginRouter from "./Routes/CommonRoutes/login.route.js";
 
 //import admin routes
@@ -50,6 +51,7 @@ import brandingRouter from "./Routes/AdminRoutes/branding.route.js";
 //user routes
 app.use("/api/purchase", purchaseRouter);
 app.use("/api/sale", salesRouter);
+app.use("/api/payment", paymentRouter);
 
 //admin routes
 app.use("/api/user", registerRouter);

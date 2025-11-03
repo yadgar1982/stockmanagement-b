@@ -10,6 +10,9 @@ const purchaseSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref:"product",
     },
+    transactionId:{
+      type:String,
+    },
     quantity: {
       type: Number,
       required: true,
@@ -24,7 +27,7 @@ const purchaseSchema = new Schema(
     },
     supplierId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"Supplier"
+      ref:"suppliers"
     },
     companyName: {
       type: String,
@@ -32,7 +35,7 @@ const purchaseSchema = new Schema(
     },
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"company",
+      ref:"companies",
     },
     warehouseName: {
       type: String,
@@ -40,7 +43,7 @@ const purchaseSchema = new Schema(
     },
     warehouseId: {
       type: mongoose.Schema.Types.ObjectId,
-     ref:"stock"
+     ref:"stocks"
     },
     unitCost: {
       type: Number,
@@ -64,7 +67,7 @@ const purchaseSchema = new Schema(
     },
     dealerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"dealer"
+      ref:"dealers"
     },
     comission: {
       type: Number,
@@ -74,14 +77,18 @@ const purchaseSchema = new Schema(
     },
     user:{
       type:mongoose.Schema.Types.ObjectId,
-      ref:"user"
+      ref:"users"
     },
     description: {
       type: String,
     },
+    totalCost:{
+      type:Number,
+    },
     isPassed: {
       type: Boolean,
     },
+    purchaseDate: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );

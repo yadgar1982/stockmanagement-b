@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+import mongoose from "mongoose";
 const dealerSchema = new Schema({
   fullname: {
     type: String,
@@ -34,6 +34,7 @@ const dealerSchema = new Schema({
     type: String,
     required: true,
   },
+  
   avatar: {
     type: String,
   },

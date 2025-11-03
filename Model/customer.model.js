@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+import mongoose from "mongoose";
 const customerSchema = new Schema({
   fullname: {
     type: String,
@@ -34,14 +34,6 @@ const customerSchema = new Schema({
     type: String,
     required: true,
   },
-  transaction:[
-    {
-      credit:{type:Number,default:0},
-      debit:{type:Number,default:0},
-      description:{type:Number,default:0},
-      date: { type: Date, default: Date.now }
-    }
-  ],
   avatar: {
     type: String,
   },

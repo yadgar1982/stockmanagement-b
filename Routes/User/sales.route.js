@@ -5,6 +5,7 @@ import {
   getAllSale,
   deleteSale,
   updateSale,
+  getSaleById
 } from "../../Controller/sales.controller.js";
 const salesRouter = express.Router();
 
@@ -18,10 +19,17 @@ salesRouter.post("/create", createSale);
 //@Private
 salesRouter.get("/get", getAllSale);
 
+
+//@ Delete Purchase
+//@ DELETE /api/purchase/delete
+//@Private
+salesRouter.get("/get/:id", getSaleById);
+
 //@ Delete sale
 //@ DELETE /api/sale/delete
 //@Private
 salesRouter.delete("/delete/:id", deleteSale);
+
 
 //@ Update sale
 //@ UPDATE /api/sale/update

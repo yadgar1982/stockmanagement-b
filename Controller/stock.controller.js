@@ -11,7 +11,6 @@ export const creatStock = async (req, res) => {
     if (isStock) {
       return res.status(400).json({ msg: "Stock already exist" });
     }
-
   const stock= await stockSchema(data).save();
 
    res.status(200).json({

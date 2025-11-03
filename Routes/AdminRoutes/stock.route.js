@@ -14,6 +14,11 @@ import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
 //POST /api/company/create
 stockRouter.post("/create",verifyToken,isAdmin, creatStock);
 
+//Company registration route
+//Private
+//POST /api/company/create
+stockRouter.post("/create",verifyToken,isAdmin, creatStock);
+
 //Company Update route
 //Private
 //PUT /api/company/update

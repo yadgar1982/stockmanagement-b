@@ -1,5 +1,5 @@
 import { Schema, model } from "mongoose";
-
+import mongoose from "mongoose";
 const supplierSchema = new Schema({
   fullname: {
     type: String,
@@ -37,14 +37,6 @@ const supplierSchema = new Schema({
   avatar: {
     type: String,
   },
-  transaction:[
-    {
-      credit:{type:Number,default:0},
-      debit:{type:Number,default:0},
-      description:{type:String},
-      date: { type: Date, default: Date.now }
-    }
-  ]
 },{timestamps:true});
 
 export default model("supplier", supplierSchema);

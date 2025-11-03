@@ -5,6 +5,7 @@ import {
   getAllPurchase,
   deletePurchase,
   updatePurchase,
+  getPurchaseById
 } from "../../Controller/purchase.controller.js";
 const purchaseRouter = express.Router();
 
@@ -22,6 +23,11 @@ purchaseRouter.get("/get", getAllPurchase);
 //@ DELETE /api/purchase/delete
 //@Private
 purchaseRouter.delete("/delete/:id", deletePurchase);
+
+//@ Delete Purchase
+//@ DELETE /api/purchase/delete
+//@Private
+purchaseRouter.get("/get/:id", getPurchaseById);
 
 //@ Update Purchase
 //@ UPDATE /api/purchase/update

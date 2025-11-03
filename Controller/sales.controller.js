@@ -59,3 +59,13 @@ export const updateSale = async (req, res) => {
     return res.status(500).json({ msg: "Internal Server Error" + err.message });
   }
 };
+
+export const getSaleById = async (req, res) => {
+  try {
+     const id = req.params.id;
+    const sales = await saleModel.findById(id);
+    return res.status(200).json({ data: sales });
+  } catch (err) {
+    return res.status(500).json({ msg: "Internal Server Error" + err.message });
+  }
+};
