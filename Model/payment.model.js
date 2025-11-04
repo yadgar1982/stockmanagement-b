@@ -18,6 +18,7 @@ const paymentSchema = new Schema(
 
 
     amount: { type: Number, required: true },
+    paymentNo: { type: String, required: true },
     currency: { type: String },
     exchangedAmt: { type: Number },
     countryName: { type: String },

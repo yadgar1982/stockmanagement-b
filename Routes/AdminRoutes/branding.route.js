@@ -17,7 +17,7 @@ brandingRouter.post("/create",verifyToken,isAdmin, createBranding);
 //Branding Update route
 //Private
 //PUT /api/Branding/update
-brandingRouter.put("/update/:id", verifyToken, updateBranding);
+brandingRouter.put("/update/:id",verifyToken,isAdmin, updateBranding);
 
 //Branding Delete route
 //Private

@@ -17,7 +17,7 @@ companyRouter.post("/create",verifyToken,isAdmin, createCompany);
 //Company Update route
 //Private
 //PUT /api/company/update
-companyRouter.put("/update/:id", verifyToken, updateCompany);
+companyRouter.put("/update/:id", verifyToken,isAdmin, updateCompany);
 
 //Company Delete route
 //Private

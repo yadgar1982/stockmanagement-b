@@ -17,7 +17,7 @@ currencyRouter.post("/create",verifyToken,isAdmin, createCurrency);
 //Currency Update route
 //Private
 //POST /api/currency/update
-currencyRouter.put("/update/:id", verifyToken, updateCurrency);
+currencyRouter.put("/update/:id", verifyToken,isAdmin, updateCurrency);
 
 //Currency Delete route
 //Private

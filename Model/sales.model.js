@@ -85,7 +85,7 @@ const saleSchema = new Schema(
      isPassed: {
       type: Boolean,
     },
-    
+     salesDate: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );

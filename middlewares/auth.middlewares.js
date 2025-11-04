@@ -21,8 +21,7 @@ export const verifyToken = (req, res, next) => {
 //allow only Admin
 export const isAdmin = (req, res, next) => {
 
-
-  if (res.user?.role  !== "admin" || "user") {
+  if (res.user?.role  !== "admin") {
     console.log("role", req.uer.role);
     return res.status(400).json({ msg: "Access denied: Not authorized" });
   }

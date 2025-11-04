@@ -17,7 +17,7 @@ productRouter.post("/create",verifyToken,isAdmin, createProduct);
 //Product Update route
 //Private
 //PUT /api/product/update
-productRouter.put("/update/:id", verifyToken, updateProduct);
+productRouter.put("/update/:id", verifyToken, isAdmin,updateProduct);
 
 //Product Delete route
 //Private

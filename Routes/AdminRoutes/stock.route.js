@@ -22,7 +22,7 @@ stockRouter.post("/create",verifyToken,isAdmin, creatStock);
 //Company Update route
 //Private
 //PUT /api/company/update
-stockRouter.put("/update/:id", verifyToken, updateStock);
+stockRouter.put("/update/:id", verifyToken,isAdmin, updateStock);
 
 //Company Delete route
 //Private
