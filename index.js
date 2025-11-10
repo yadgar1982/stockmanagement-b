@@ -1,25 +1,22 @@
 import dotenv from "dotenv";
+import mongoose from "mongoose";
+import express from "express";
+//importing external modules
+import cors from "cors";
+import logger from "morgan";
+import path from "path"
 
 dotenv.config();
+const app = express();
 
 //mongoDB connection
-import mongoose from "mongoose";
+
 mongoose
   .connect(process.env.DB_URL)
   .then(() => console.log("mongoDB connected"))
   .catch((err) => console.log("dbconnection error", err));
 //create listening port
-import express from "express";
-const app = express();
 
-const PORT = 1234;
-app.listen(PORT || 1234, () =>
-  console.log(`Server is runnin on port ${process.env.PORT}`)
-);
-
-//importing external modules
-import cors from "cors";
-import logger from "morgan";
 //create cors options;
 const corsOptions = {
   origin: process.env.ORIGIN || "https://stockmanagement-f.vercel.app",
@@ -30,6 +27,19 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
+
+
+const PORT = 1234;
+app.listen(PORT || 1234, () =>
+  console.log(`Server is runnin on port ${process.env.PORT}`)
+);
+
+
+
+
+//multer setup
+const __dirname = path.resolve();
+app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 
 //import common routes files
 import purchaseRouter from "./Routes/User/purchase.routes.js";

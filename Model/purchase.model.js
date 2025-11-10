@@ -85,6 +85,9 @@ const purchaseSchema = new Schema(
     totalCost:{
       type:Number,
     },
+    totalLocalCost:{
+      type:Number
+    },
     isPassed: {
       type: Boolean,
     },
