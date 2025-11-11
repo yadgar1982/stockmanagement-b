@@ -16,7 +16,8 @@ const paymentSchema = new Schema(
     companyId: { type: mongoose.Schema.Types.ObjectId, ref: "company" },
     companyName: { type: String },
 
-
+    transBy:{type:String},
+    entity:{type:String},
     amount: { type: Number, required: true },
     paymentNo: { type: String, required: true },
     currency: { type: String },

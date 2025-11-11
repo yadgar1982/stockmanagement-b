@@ -69,6 +69,12 @@ const saleSchema = new Schema(
     comission: {
       type: Number,
     },
+   totalComission:{
+      type:Number
+    },
+     totalExComission:{
+      type:Number
+    },
     userName: {
       type: String,
     },

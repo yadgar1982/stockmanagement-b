@@ -72,6 +72,12 @@ const purchaseSchema = new Schema(
     comission: {
       type: Number,
     },
+     totalComission:{
+      type:Number
+    },
+     totalExComission:{
+      type:Number
+    },
     userName: {
       type: String,
     },
@@ -88,6 +94,7 @@ const purchaseSchema = new Schema(
     totalLocalCost:{
       type:Number
     },
+   
     isPassed: {
       type: Boolean,
     },
