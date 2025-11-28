@@ -62,6 +62,10 @@ const purchaseSchema = new Schema(
     batch: {
       type: String,
     },
+    party: {
+      type: String,
+    },
+
     dealerName: {
       type: String,
     },
@@ -91,7 +95,10 @@ const purchaseSchema = new Schema(
     totalCost:{
       type:Number,
     },
-    totalLocalCost:{
+    salePrice:{
+      type:Number,
+    },
+     totalLocalCost:{
       type:Number
     },
    

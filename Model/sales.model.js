@@ -55,8 +55,10 @@ const saleSchema = new Schema(
     countryName: {
       type: String,
     },
-   
     batch: {
+      type: String,
+    },
+    party: {
       type: String,
     },
     dealerName: {

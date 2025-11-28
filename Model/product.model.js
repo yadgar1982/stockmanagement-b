@@ -20,7 +20,10 @@ const productSchema = new Schema({
   },
   price: {
     type: Number,
-    requied: true,
+    trim: true,
+  },
+  salePrice: {
+    type: Number,
     trim: true,
   },
   unit: {
