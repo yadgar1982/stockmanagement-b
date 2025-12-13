@@ -10,9 +10,6 @@ const purchaseSchema = new Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref:"product",
     },
-    transactionId:{
-      type:String,
-    },
     quantity: {
       type: Number,
       required: true,
@@ -21,13 +18,16 @@ const purchaseSchema = new Schema(
       type: String,
       required: true,
     },
+     weight: {
+      type: Number,
+    },
      supplierName: {
       type: String,
       required:true
     },
     supplierId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"suppliers"
+      ref:"supplier"
     },
     companyName: {
       type: String,
@@ -35,7 +35,7 @@ const purchaseSchema = new Schema(
     },
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref:"companies",
+      ref:"company",
     },
     warehouseName: {
       type: String,
@@ -101,7 +101,9 @@ const purchaseSchema = new Schema(
      totalLocalCost:{
       type:Number
     },
-   
+    orderNo:{
+        type:String,
+      },
     isPassed: {
       type: Boolean,
     },

@@ -46,6 +46,8 @@ export const updateSale = async (req, res) => {
     const { id } = req.params;
 
     const data = req.body;
+    console.log("updated sale data",data)
+
     const sale = await saleModel.findByIdAndUpdate(id, data, {
       new: true,
     });

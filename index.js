@@ -45,6 +45,7 @@ app.use("/uploads", express.static(path.join(__dirname, "/uploads")));
 import purchaseRouter from "./Routes/User/purchase.routes.js";
 import salesRouter from "./Routes/User/sales.route.js";
 import paymentRouter from "./Routes/User/payments.route.js";
+import wareHouseRouter from "./Routes/User/warehouse.route.js";
 import loginRouter from "./Routes/CommonRoutes/login.route.js";
 
 //import admin routes
@@ -53,6 +54,7 @@ import customerRouter from "./Routes/AdminRoutes/customer.route.js";
 import suppLierRouter from "./Routes/AdminRoutes/supplier.route.js";
 import dealerRouter from "./Routes/AdminRoutes/dealer.route.js";
 import companyRouter from "./Routes/AdminRoutes/company.route.js";
+import categoryRouter from "./Routes/AdminRoutes/category.route.js";
 import productRouter from "./Routes/AdminRoutes/product.route.js";
 import currencyRouter from "./Routes/AdminRoutes/currency.route.js";
 import stockRouter from "./Routes/AdminRoutes/stock.route.js";
@@ -62,6 +64,7 @@ import brandingRouter from "./Routes/AdminRoutes/branding.route.js";
 app.use("/api/purchase", purchaseRouter);
 app.use("/api/sale", salesRouter);
 app.use("/api/payment", paymentRouter);
+app.use("/api/warehouse", wareHouseRouter);
 
 //admin routes
 app.use("/api/user", registerRouter);
@@ -74,3 +77,4 @@ app.use("/api/currency", currencyRouter);
 app.use("/api/stock", stockRouter);
 app.use("/api/auth", loginRouter);
 app.use("/api/branding", brandingRouter);
+app.use("/api/category", categoryRouter);

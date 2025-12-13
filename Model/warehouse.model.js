@@ -1,7 +1,14 @@
 import mongoose from "mongoose";
 import { Schema, model } from "mongoose";
-const saleSchema = new Schema(
-  {
+
+const wareHouseSchema = new Schema(
+   {
+    transactionId:{
+      type:String,
+    },
+    transaction:{
+      type:String,
+    },
     productName: {
       type: String,
       required: true,
@@ -9,14 +16,6 @@ const saleSchema = new Schema(
     productId: {
       type: mongoose.Schema.Types.ObjectId,
       ref:"product",
-    },
-    categoryName:{
-      type:String,
-      required:true
-    },
-    categoryId:{
-      type:mongoose.Schema.Types.ObjectId,
-      ref:"category"
     },
     quantity: {
       type: Number,
@@ -26,12 +25,18 @@ const saleSchema = new Schema(
       type: String,
       required: true,
     },
-    weight: {
+     weight: {
       type: Number,
+    },
+     supplierName: {
+      type: String,
+    },
+    supplierId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"supplier"
     },
      customerName: {
       type: String,
-      required:true
     },
     customerId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -51,7 +56,7 @@ const saleSchema = new Schema(
     },
     warehouseId: {
       type: mongoose.Schema.Types.ObjectId,
-     ref:"stock"
+     ref:"stocks"
     },
     unitCost: {
       type: Number,
@@ -66,54 +71,42 @@ const saleSchema = new Schema(
     countryName: {
       type: String,
     },
-    batch: {
-      type: String,
-    },
     party: {
       type: String,
     },
-    dealerName: {
-      type: String,
-    },
-    dealerId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"dealer"
-    },
-    comission: {
-      type: Number,
-    },
-   totalComission:{
-      type:Number
-    },
-     totalExComission:{
-      type:Number
-    },
+
     userName: {
       type: String,
     },
     user:{
       type:mongoose.Schema.Types.ObjectId,
-      ref:"user"
-    },
-    invoiceNo:{
-      type:String,
+      ref:"users"
     },
     description: {
       type: String,
     },
-     totalCost:{
+    totalCost:{
       type:Number,
     },
-    totalLocalCost:{
+    salePrice:{
+      type:Number,
+    },
+     totalLocalCost:{
       type:Number
     },
-     isPassed: {
+    orderNo:{
+        type:String,
+      },
+    transactionType:{
+        type:String,
+      },
+    isTransfer: {
       type: Boolean,
     },
-     salesDate: { type: Date, default: Date.now },
+    transactionDate: { type: Date, default: Date.now },
   },
   { timestamps: true }
 );
 
-const SalesModel = model("sale", saleSchema);
-export default SalesModel;
+const WareHouseModel = model("warehouse", wareHouseSchema);
+export default WareHouseModel; 
