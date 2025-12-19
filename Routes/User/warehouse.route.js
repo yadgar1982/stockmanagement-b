@@ -4,9 +4,9 @@ import {
   createWareHouseProduct,
   getAllWarehouseProducts,
   deleteWarehouseProduct,
-  updateWarehouseProduct,
   getWarehouseProductById,
-  updatewById
+  updateById,
+
 } from "../../Controller/warehouse.controller.js";
 const warehouseRouter = express.Router();
 
@@ -32,12 +32,12 @@ warehouseRouter.get("/get/:id", getWarehouseProductById);
 
 //@ Update warehouseProduct
 //@ UPDATE /api/warehouse/update
-//@Private
-warehouseRouter.put("/update/:id", updateWarehouseProduct);
+// //@Private
+warehouseRouter.put("/update/:id", updateById);
 
-//@ Update warehouseProduct 
-//@ UPDATE /api/warehouse/update
-//@Private
-warehouseRouter.put("/updatewarehouse/:id", updatewById);
+// //@ Update warehouseProduct 
+// //@ UPDATE /api/warehouse/update
+// //@Private
+// warehouseRouter.put("/warehouse/:id", updatewById);
 
 export default warehouseRouter;

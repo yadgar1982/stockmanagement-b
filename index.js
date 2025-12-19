@@ -59,12 +59,14 @@ import productRouter from "./Routes/AdminRoutes/product.route.js";
 import currencyRouter from "./Routes/AdminRoutes/currency.route.js";
 import stockRouter from "./Routes/AdminRoutes/stock.route.js";
 import brandingRouter from "./Routes/AdminRoutes/branding.route.js";
+import authRouthes from "./Routes/User/auth.routes.js";
 
 //user routes
 app.use("/api/purchase", purchaseRouter);
 app.use("/api/sale", salesRouter);
 app.use("/api/payment", paymentRouter);
 app.use("/api/warehouse", wareHouseRouter);
+app.use("/api/auth", authRouthes);
 
 //admin routes
 app.use("/api/user", registerRouter);

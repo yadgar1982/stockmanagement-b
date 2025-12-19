@@ -34,6 +34,8 @@ const userSchema = new Schema({
   avatar: {
     type: String,
   },
+  otp: String,
+  otpExpires: Date,
 },{timestamps:true});
 
 export default model("user", userSchema);

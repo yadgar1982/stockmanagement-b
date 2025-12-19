@@ -5,7 +5,9 @@ import {
   createUser,
   deleteUser,
   getAllUser,
-  updateUser
+  updateUser,
+  getUserByEmail,
+  updateUserByEmail
 } from "../../Controller/user.controller.js";
 import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
 //User registration route
@@ -18,6 +20,11 @@ userRouter.post("/create",verifyToken,isAdmin, createUser);
 //POST /api/user/update
 userRouter.put("/update/:id", verifyToken, updateUser);
 
+//User Update route
+//Private
+//POST /api/user/update
+userRouter.put("/updatebyemail/:email", updateUserByEmail);
+
 //User Delete route
 //Private
 //POST /api/user/delete
@@ -27,5 +34,9 @@ userRouter.delete("/delete/:id",verifyToken,isAdmin, deleteUser);
 //Private
 //POST /api/user/get/all
 userRouter.get("/get/all",  getAllUser);
+//User get route
+//Private
+//POST /api/user/get/all
+userRouter.get("/get/:email",  getUserByEmail);
 
 export default userRouter;
