@@ -1,20 +1,20 @@
 import bcrypt from "bcryptjs";
 import userModel from "../Model/user.model.js";
-import {sendEmail} from "../middlewares/sendEmail.js";
-
+import { sendEmail } from "../middlewares/sendEmail.js";
+import dotenv from 'dotenv'
+dotenv.config();
+const LOGO=process.env.LOGO_URL;
 export const sendOtp = async (req, res) => {
   try {
-    const { email } = req.body; 
+    const { email } = req.body;
 
-  
     const user = await userModel.findOne({ email });
     if (!user) {
       return res.status(404).json({ message: "Email not registered" });
     }
-    console.log("user",user)
+    console.log("user", user);
     const otp = Math.floor(100000 + Math.random() * 900000).toString();
     const hashedOtp = await bcrypt.hash(otp, 10);
-
 
     user.otp = hashedOtp;
     user.otpExpires = Date.now() + 10 * 60 * 1000;
@@ -23,7 +23,7 @@ export const sendOtp = async (req, res) => {
     await sendEmail({
       to: email,
       subject: "Password Reset OTP",
-     html: `
+      html: `
   <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f5f7fa; padding: 40px;">
     <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); padding: 30px; text-align: center;">
       <h2 style="color: #08678f; font-weight: 700; margin-bottom: 20px;">Password Reset OTP</h2>
@@ -42,7 +42,7 @@ export const sendOtp = async (req, res) => {
       </p>
     </div>
   </div>
-`
+`,
     });
 
     res.json({ success: true, message: "OTP sent to email" });
@@ -110,11 +110,84 @@ export const resetPasswordWithOtp = async (req, res) => {
     await user.save();
 
     return res.status(200).json({
-      msg: "Password reset successfully"
+      msg: "Password reset successfully",
     });
-
   } catch (err) {
     console.error(err);
     return res.status(500).json({ msg: "Password reset failed" });
+  }
+};
+
+export const sendCustomEmailController = async (req, res) => {
+  try {
+    const { email, name, subject, message } = req.body;
+
+    if (!email || !name || !message) {
+      return res
+        .status(400)
+        .json({ success: false, message: "Missing required fields" });
+    }
+
+    await sendEmail({
+      to: email,
+      subject: subject || `Message from ${name}`,
+      html: `
+  <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; padding: 50px 0;">
+    <div style="max-width: 600px; margin: auto; background-color: #ffffff; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.1); overflow: hidden;">
+      
+      <!-- Header -->
+      <div style="display: flex; align-items: center; padding: 0 30px; background: linear-gradient(90deg, #08678f, #0a66c2);">
+        <img src="${LOGO}" alt="Logo" style="width: 50px; height: auto; border-radius: 50%; margin-right: 15px;" />
+
+        <h1 style="color: #fff; font-size: 24px; font-weight: 700; margin: 0;">New Contact Form Message</h1>
+      </div>
+
+      <!-- Body -->
+      <div style="padding: 30px; color: #333333; font-size: 16px; line-height: 1.6;">
+        <p>Hello,</p>
+        <p>You have received a new message from your website contact form. Details are below:</p>
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+          <tr>
+            <td style="padding: 10px; font-weight: 600; width: 120px;">Name:</td>
+            <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;">${name}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; font-weight: 600;">Email:</td>
+            <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;">${email}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; font-weight: 600;">Subject:</td>
+            <td style="padding: 10px; border-bottom: 1px solid #e0e0e0;">${subject}</td>
+          </tr>
+          <tr>
+            <td style="padding: 10px; font-weight: 600;">Message:</td>
+            <td style="padding: 10px;">${message}</td>
+          </tr>
+        </table>
+
+        <p style="margin-top: 30px; font-size: 14px; color: #888888;">
+          This email was sent from your website contact form. Please respond promptly.
+        </p>
+      </div>
+
+      <!-- Footer -->
+      <div style="background-color: #f4f6f8; text-align: center; padding: 15px; font-size: 13px; color: #999999;">
+        &copy; ${new Date().getFullYear()} Hadia Gold Group. All rights reserved.
+      </div>
+
+    </div>
+  </div>
+`,
+    });
+
+    return res
+      .status(200)
+      .json({ success: true, message: "Email sent successfully" });
+  } catch (error) {
+    console.error("Failed to send custom email:", error);
+    return res
+      .status(500)
+      .json({ success: false, message: "Server error", error: error.message });
   }
 };
