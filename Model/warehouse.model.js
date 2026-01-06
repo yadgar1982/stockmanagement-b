@@ -65,6 +65,9 @@ const wareHouseSchema = new Schema(
     currency: {
       type: String,
     },
+    exCurrency: {
+      type: String,
+    },
     exchangedAmt: {
       type: Number,
     },

@@ -15,6 +15,7 @@ const paymentSchema = new Schema(
 
     companyId: { type: mongoose.Schema.Types.ObjectId, ref: "company" },
     companyName: { type: String },
+    accountNo: { type: String },
 
     transBy:{type:String},
     entity:{type:String},
@@ -26,6 +27,7 @@ const paymentSchema = new Schema(
     paymentType: { type: String },         
     transactionType: { type: String },     
     description: { type: String },
+    partyNo: { type: String },
    
     isPassed: { type: Boolean, default: false },
     paymentDate: {type:Date}, 
