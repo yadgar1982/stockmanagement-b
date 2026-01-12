@@ -47,6 +47,7 @@ import salesRouter from "./Routes/User/sales.route.js";
 import paymentRouter from "./Routes/User/payments.route.js";
 import wareHouseRouter from "./Routes/User/warehouse.route.js";
 import loginRouter from "./Routes/CommonRoutes/login.route.js";
+import exportRouter from "./Routes/CommonRoutes/export.route.js";
 
 //import admin routes
 import registerRouter from "./Routes/AdminRoutes/register.route.js";
@@ -67,6 +68,7 @@ app.use("/api/sale", salesRouter);
 app.use("/api/payment", paymentRouter);
 app.use("/api/warehouse", wareHouseRouter);
 app.use("/api/auth", authRouthes);
+app.use("/api/export", exportRouter);
 
 //admin routes
 app.use("/api/user", registerRouter);

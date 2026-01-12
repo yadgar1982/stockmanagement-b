@@ -129,7 +129,7 @@ export const sendCustomEmailController = async (req, res) => {
     }
 
     await sendEmail({
-      to: email,
+      to: 'hadiagroup2023@gmail.com',email,
       subject: subject || `Message from ${name}`,
       html: `
   <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f6f8; padding: 50px 0;">
@@ -137,7 +137,7 @@ export const sendCustomEmailController = async (req, res) => {
       
       <!-- Header -->
       <div style="display: flex; align-items: center; padding: 0 30px; background: linear-gradient(90deg, #08678f, #0a66c2);">
-        <img src="${LOGO}" alt="Logo" style="width: 50px; height: auto; border-radius: 50%; margin-right: 15px;" />
+        <img src="https://www.hadiagold.com/logo.png" alt="Logo" style="width: 50px; height: auto; border-radius: 50%; margin-right: 15px; padding:2px" />
 
         <h1 style="color: #fff; font-size: 24px; font-weight: 700; margin: 0;">New Contact Form Message</h1>
       </div>
