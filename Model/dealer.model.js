@@ -25,10 +25,15 @@ const dealerSchema = new Schema({
     requied: false,
     trim: true,
   },
+
   country: {
     type: String,
     trim: true,
     lowercase: true,
+  },
+   address: {
+    type: String,
+    requied: false,
   },
   role: {
     type: String,

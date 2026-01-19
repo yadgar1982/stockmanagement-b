@@ -7,6 +7,7 @@ import {
   getAllDealer,
   updateDealer,
   getById,
+  updateMyDealer,
 
 } from "../../Controller/dealer.controller.js";
 import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
@@ -20,6 +21,11 @@ dealerRouter.post("/create",verifyToken,isAdmin, createDealer);
 //Private
 //POST /api/dealer/update/:id
 dealerRouter.put("/update/:id", verifyToken, updateDealer);
+
+//Dealer Update without password route
+//Private
+//POST /api/dealer/updatedealer/:id
+dealerRouter.put("/updatedealer/:id", verifyToken, updateMyDealer);
 
 //Dealer Delete route
 //Private

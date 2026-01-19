@@ -7,7 +7,8 @@ import {
   getAllUser,
   updateUser,
   getUserByEmail,
-  updateUserByEmail
+  updateUserByEmail,
+  deleteUserByEmail
 } from "../../Controller/user.controller.js";
 import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
 //User registration route
@@ -29,6 +30,11 @@ userRouter.put("/updatebyemail/:email", updateUserByEmail);
 //Private
 //POST /api/user/delete
 userRouter.delete("/delete/:id",verifyToken,isAdmin, deleteUser);
+
+//User Delete route
+//Private
+//POST /api/user/delete
+userRouter.delete("/deleteUserbyemail/:email",verifyToken,isAdmin, deleteUserByEmail);
 
 //User get route
 //Private

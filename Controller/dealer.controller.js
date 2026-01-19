@@ -83,6 +83,34 @@ export const updateDealer = async (req, res) => {
   }
 };
 
+//update dealer without passsword
+export const updateMyDealer = async (req, res) => {
+  try {
+    const data = req.body;
+    const { id } = req.params;
+
+    // Never allow password update here
+    delete data.password;
+
+    const dealer = await dealerSchema.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!dealer) {
+      return res.status(404).json({ msg: "Dealer not found" });
+    }
+
+    return res.status(200).json({
+      msg: "Dealer updated successfully",
+      data: dealer,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Failed to update dealer", err });
+  }
+};
+
 //get user by email
 
 export const getDealerByEmail = async (req, res) => {

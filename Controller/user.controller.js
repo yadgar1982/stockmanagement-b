@@ -46,8 +46,20 @@ export const createUser = async (req, res) => {
 export const deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log("id", id);
     const user = await userSchema.findByIdAndDelete(id);
+    if (!user) {
+      res.status(400).json({ msg: "User not found" });
+    }
+    return res.status(200).json({ msg: "User Deleted Successfully" });
+  } catch (err) {
+    res.status(500).json({ msg: "failed to Delete user", err });
+  }
+};
+//delete user
+export const deleteUserByEmail = async (req, res) => {
+  try {
+        const email = req.params.email;
+    const user = await userSchema.findOneAndDelete({email});
     if (!user) {
       res.status(400).json({ msg: "User not found" });
     }

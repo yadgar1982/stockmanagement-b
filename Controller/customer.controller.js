@@ -76,6 +76,34 @@ export const updateCustomer=async(req,res)=>{
   }
 }
 
+//update customer without passsword
+export const updateMycustomer = async (req, res) => {
+  try {
+    const data = req.body;
+    const { id } = req.params;
+
+    // Never allow password update here
+    delete data.password;
+
+    const customer = await customerSchema.findByIdAndUpdate(id, data, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!customer) {
+      return res.status(404).json({ msg: "Customer not found" });
+    }
+
+    return res.status(200).json({
+      msg: "Customer updated successfully",
+      data: customer,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ msg: "Failed to update customer", err });
+  }
+};
+
 //get customer by email
 
 export const getCustomerByMail = async (req, res) => {

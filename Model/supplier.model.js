@@ -30,6 +30,10 @@ const supplierSchema = new Schema({
     trim: true,
     lowercase: true,
   },
+    address: {
+    type: String,
+    requied: false,
+  },
   role: {
     type: String,
     required: true,

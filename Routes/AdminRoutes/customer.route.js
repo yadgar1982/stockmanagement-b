@@ -6,7 +6,8 @@ import {
   deleteCustomer,
   getAllCustomer,
   updateCustomer,
-  getById
+  getById,
+  updateMycustomer
 } from "../../Controller/customer.controller.js";
 import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
 //Customer registration route
@@ -18,6 +19,12 @@ customerRouter.post("/create",verifyToken,isAdmin, createCustomer);
 //Private
 //PUT /api/customer/update/:id
 customerRouter.put("/update/:id", verifyToken, updateCustomer);
+
+
+//Dealer Update without password route
+//Private
+//POST /api/dealer/updatecustomer/:id
+customerRouter.put("/updatecustomer/:id", verifyToken, updateMycustomer);
 
 //Customer Delete route
 //Private

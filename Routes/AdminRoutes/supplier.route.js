@@ -7,6 +7,7 @@ import {
   getAllSupplier,
   updateSupplier,
   getById,
+  updateMySupplier
  
 } from "../../Controller/supplier.controller.js";
 import { verifyToken, isAdmin } from "../../middlewares/auth.middlewares.js";
@@ -20,6 +21,10 @@ supplierRouter.post("/create",verifyToken,isAdmin, createSupplier);
 //POST /api/supplier/update/:id
 supplierRouter.put("/update/:id", verifyToken, updateSupplier);
 
+//Supplier Update without password route
+//Private
+//POST /api/supplier/updatesupplier/:id
+supplierRouter.put("/updatesupplier/:id", verifyToken, updateMySupplier);
 
 //supplier Delete route
 //Private
