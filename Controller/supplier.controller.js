@@ -15,6 +15,8 @@ export const createSupplier = async (req, res) => {
       return res.status(400).json({ msg: "Supplier already exist" });
     }
 
+
+ 
     // grabartar url
     const email = data.email;
     const avatar = gravatar.url(

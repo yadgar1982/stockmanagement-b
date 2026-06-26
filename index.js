@@ -18,15 +18,28 @@ mongoose
 //create listening port
  
 //create cors options;
-const corsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "https://stockmanagement-f.vercel.app",
-    "https://www.hadiagold.com",
-  ],
-};
+const allowedOrigins = [
+  "https://stockmanagement-f.vercel.app",
+  "https://www.hadiagold.com",
+  "http://localhost:5173",
+];
+
+
 //app level middleware
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) return callback(null, true);
+
+      if (allowedOrigins.includes(origin)) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(logger("dev"));
 app.use(express.urlencoded({ extended: false }));
