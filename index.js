@@ -16,7 +16,7 @@ mongoose
   .then(() => console.log("mongoDB connected"))
   .catch((err) => console.log("dbconnection error", err));
 //create listening port
-
+ 
 //create cors options;
 const corsOptions = {
   origin: process.env.ORIGIN || "https://stockmanagement-f.vercel.app",
@@ -31,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 
 const PORT = 1234;
 app.listen(PORT || 1234, () =>
-  console.log(`Server is runnin on port ${process.env.PORT}`)
+  console.log(`Server is running on port ${process.env.PORT}`)
 );
 
 
