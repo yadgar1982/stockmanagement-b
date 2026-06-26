@@ -19,7 +19,10 @@ mongoose
  
 //create cors options;
 const corsOptions = {
-  origin: process.env.ORIGIN || "https://stockmanagement-f.vercel.app",
+  origin: [
+    "https://stockmanagement-f.vercel.app",
+    "https://www.hadiagold.com",
+  ],
 };
 
 //app level middleware
