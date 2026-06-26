@@ -24,7 +24,6 @@ const corsOptions = {
     "https://www.hadiagold.com",
   ],
 };
-
 //app level middleware
 app.use(cors(corsOptions));
 app.use(express.json());
