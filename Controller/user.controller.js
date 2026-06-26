@@ -6,10 +6,15 @@ import gravatar from "gravatar";
 export const createUser = async (req, res) => {
   try {
     const data = req.body;
-    console.log("data data", data);
+    console.log("Incoming data:", data);
+
     const isUser = await userSchema.findOne({ email: data.email });
+    console.log("Existing user:", isUser);
+
     if (isUser) {
-      return res.status(400).json({ msg: "User already exist" });
+      return res.status(400).json({
+        msg: "User already exists"
+      });
     }
 
     // grabartar url
@@ -39,6 +44,7 @@ export const createUser = async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ msg: err.message });
+      
   }
 };
 

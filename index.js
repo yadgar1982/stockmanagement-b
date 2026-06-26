@@ -20,6 +20,7 @@ mongoose
 //create cors options;
 const corsOptions = {
   origin: [
+    "http://localhost:5173",
     "https://stockmanagement-f.vercel.app",
     "https://www.hadiagold.com",
   ],
